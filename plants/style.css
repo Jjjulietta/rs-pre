@@ -37,6 +37,7 @@ body {
   font-size: 20px;
   font-weight: 400;
   color: #636060;
+  scroll-behavior: smooth;
 }
 ._container {
   max-width: 1222px;
@@ -117,7 +118,7 @@ body {
   justify-content: space-between;
   margin-left: 224.2px;
   min-height: 340px;
-  width: 549px;
+  
 }
 
 .title-header {
@@ -134,7 +135,7 @@ body {
   color: #499a18;
 }
 .body-text {
-  
+ 
   margin-bottom: 46px;
   font-family: "Inter";
   font-style: normal;
@@ -177,7 +178,7 @@ body {
 }
 .about__body {
   flex: 0 1 50%;
-  margin: 93px 0px 103px 0px;
+  margin: 93px 0px 104px 0px;
 }
 
 .title-body {
@@ -214,6 +215,7 @@ body {
 .main__servise {
   background: #edf2ec;
   padding: 40px 0px 121px 0px;
+  
 }
 
 .servise__header {
@@ -560,15 +562,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: all 0.3s;
+  cursor: pointer;
 }
 .contact__body:focus {
+  background-color: #c1e698;
+}
+.contact__body:hover {
   background-color: #c1e698;
 }
 .contact-title {
   margin-left: 20px;
 }
 .contact__btn {
-  margin-right: 17.5px;
+  margin-right: 33.5px;
 }
 .contact__city {
   position: absolute;
@@ -595,8 +602,8 @@ body {
 /*-------------------CONTACT END--------------------*/
 /*--------------------------FOOTER-------------------*/
 .footer {
-  padding: 48px 0px;
-  min-height: 130px;
+  padding: 40px 0px;
+  height: 130px;
 }
 
 .footer__content {
@@ -649,12 +656,13 @@ transition: all 0.3s;
  
 }
 .social__item{
-  transition: all 0.3s;
+  transition: all 1s;
 }
 .social__item:not(:last-child) {
   margin-right: 20px;
 }
 .social__item:hover{
-  background: #c1e698;;
+  
+  transform: scale(1.5) rotateY(180deg);
   
 }
