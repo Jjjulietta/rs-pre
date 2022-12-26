@@ -99,6 +99,7 @@ body {
     height: 117px;;
   }
   .header__body {
+    
     margin: 35px 0px;
   }
   .header__logo {
@@ -107,18 +108,18 @@ body {
 }
 @media (max-width: 380px) {
   .header {
-    margin-bottom: 9px;
+    height: 96px;
   }
   ._container {
     max-width: 330px;
     margin: 0 auto;
   }
   .header__body {
-    margin: 42px 0px 24px 0px;
+    height: 24px;
+    margin: 36px 0px;
   }
-  .header__logo {
-    align-self: center;
-  }
+  
+    
 /*------------------------BURGER-----------------------------*/
   .menu__icon {
     display: block;
@@ -128,14 +129,14 @@ body {
     right: 0px;
     z-index: 5;
     width: 40px;
-    height: 27px;
+    height: 24px;
     border-top: 2px solid #717171;
   }
   .menu__icon span {
     display: block;
     border-bottom: 2px solid #717171;
     width: 100%;
-    height: 9px;
+    height: 8px;
   }
 
   .menu__list {
@@ -306,32 +307,44 @@ body {
 }
 @media (max-width: 380px) {
   .main__welcome {
-    padding: 105px 0px 30px 0px;
+    padding: 24px 0px;
+    height: 300px;
+  }
+  .welcome__container{
+    min-height: 252px;
+  }
+  .welcome__body{
+    min-height: 252px;
+    
   }
   .title-header {
     font-weight: 700;
     font-size: 25px;
     line-height: calc(35 / 25 * 100%);
     /* or 111% */
-    margin-bottom: 23px;
+    margin-bottom: 20.36px;
   }
   .body-text {
-    margin-bottom: 24px;
+    margin-bottom: 20.08px;
+  }
+  .welcome__image img {
+    display: none;
+    
   }
   .button {
-    font-size: 14px;
-    line-height: calc(20 / 14 * 100%);
+    width: 100px;
+    height: 34.14px;
+    font-size: 10px;
+    line-height: calc(20 / 10 * 100%);
     /* or 125% */
 
     color: #000000;
     border: 2px solid #e06733;
     border-radius: 10px;
+    text-align: center;
 
-    padding: 8px 15px;
-  }
-  .welcome__body {
-    height: 257px;
-  }
+    }
+  
 }
 /*-----------WELCOME END----------*/
 /*------------ABOUT---------------*/
@@ -381,7 +394,7 @@ body {
     align-items: center;
   }
   .about__body {
-    flex: 1 1 auto;
+    flex: 0 1 auto;
     margin: 40px 0px;
     height: 350px;
   }
@@ -413,27 +426,30 @@ body {
   }
 }
 @media (max-width: 380px) {
-  .about__body {
-    margin: 30px 0px 0px 0px;
+  
+  .about__body{
+    height: 307px;
+    margin-top: 30px;
+    margin-bottom: 0px;
   }
   .title-body {
+    max-width: 288px;
     font-size: 25px;
     line-height: calc(33 / 25 * 100%);
     text-align: center;
-    margin-bottom: 21.55px;
+    margin-bottom: 15px;
   }
-  .body-text {
-    font-weight: 400;
+  .about__body p{
+   
     font-size: 15px;
-    line-height: 167%;
-
-    color: #636060;
+    line-height: 25px;
   }
   .body-about__text {
     margin-bottom: 0px;
   }
   .about__image {
     align-self: center;
+    margin-bottom: 25px;
   }
   .about__image img {
     max-width: 150px;
@@ -659,14 +675,17 @@ body {
 }
 @media (max-width: 380px) {
   .main__servise {
-    padding: 30px 0px 25px 0px;
+    padding: 30px 0px 30px 0px;
   }
   .servise__header {
     align-items: flex-start;
     flex-wrap: wrap;
-    margin-bottom: 42px;
+    
+    margin-bottom: 33px;
   }
   .servise__title {
+    min-height: 69px;
+    max-width: 187px;
     font-size: 25px;
     line-height: 33px;
     margin-bottom: 35px;
@@ -675,11 +694,11 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     column-gap: 0px;
-    row-gap: 34px;
+    row-gap: 35px;
     justify-items: center;
   }
   .card {
-    max-width: 280px;
+    max-width: 279px;
   }
   .card__content {
     flex-wrap: wrap;
@@ -900,11 +919,17 @@ body {
 @media (max-width: 570px) {
 }
 @media (max-width: 380px) {
+  .main__prices {
+    padding-top: 25px;
+  }
   .prices__container {
     flex-direction: column;
     align-items: center;
   }
   .prices__prices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 15px;
   }
   .prices__contacts {
@@ -916,28 +941,35 @@ body {
     max-width: 230px;
   }
   .prices__title {
+    text-align: center;
     font-size: 25px;
     line-height: 30px;
     /* identical to box height */
 
     color: #000000;
-    margin-bottom: 42px;
-  }
+    margin-bottom: 40px;
+    
+      }
   .prices__body {
+    
     padding: 29px 22px;
     max-width: 224px;
-    min-height: 235px;
+    height: 235px;
   }
   .prices__item {
-    padding: 16px 40px 12px 40px;
+    padding: 16px 38px 16px 30px;
     width: 180px;
     height: 49.72px;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 20px;
     overflow: hidden;
     transition: all 0.5s ease-out;
   }
   .prices__item:not(:last-child) {
     margin-bottom: 13px;
   }
+  
   .contacts__title {
     font-size: 20px;
     line-height: calc(35 / 20 * 100%);
