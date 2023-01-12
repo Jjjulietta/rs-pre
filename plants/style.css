@@ -196,29 +196,31 @@ body {
 
 .main__welcome {
   position: relative;
-  padding: 62px 0px 58px 0px;
+  padding: 62px 0px 62px 0px;
   background: #edf2ec;
 }
 
 .welcome__container {
   display: flex;
   align-items: center;
-  min-height: 407.36px;
+  height: 407.36px;
 }
-
+.welcome__image{
+  flex: 0 0 36.72%;
+}
 .welcome__image img {
   object-fit: contain;
-  max-width: 448.8px;
+  max-width: 100%;
   height: auto;
   background: transparent;
 }
 .welcome__body {
-  flex: 0 1 50%;
+  flex: 1 1 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 224.2px;
-  min-height: 340px;
+  margin-left: 18.34%;
+  height: 340px;
   
 }
 
@@ -235,8 +237,7 @@ body {
 .title-header > span {
   color: #499a18;
 }
-.body-text {
-
+.welcome__body p {
   margin-bottom: 46px;
   font-family: "Inter";
   font-style: normal;
@@ -247,7 +248,7 @@ body {
   background: #E06733;
   color: #FFFFFF;
 }
-.button {
+.welcome__button {
   
   text-align: center;
   width: 158px;
@@ -271,7 +272,7 @@ body {
 @media (max-width: 768px) {
   .welcome__container{
     flex-direction: row-reverse;
-    min-height: 310px;
+    height: 310px;
     justify-content: space-between;
     align-items: flex-start;
   }
@@ -279,16 +280,15 @@ body {
     padding: 40px 0px 70px 0px;
     
   }
-  .welcome__image img {
-    width: 280px;
-    height: 254px;
-    
+  .welcome__image{
+    flex: 0 0 42%;
   }
+  
 
   .welcome__body {
-    flex: 1 1 50%;
+    flex: 1 1 52%;
     margin-left: 0px;
-    min-height: 310px;
+    
     max-width: 346px;
     justify-content: flex-start;
   }
@@ -311,10 +311,16 @@ body {
     height: 300px;
   }
   .welcome__container{
-    min-height: 252px;
+    display: block;
+    height: 252px;
+  }
+  .welcome__image img {
+    display: none;
+    
   }
   .welcome__body{
-    min-height: 252px;
+    flex: 0 1 100%;
+    height: auto;
     
   }
   .title-header {
@@ -324,14 +330,11 @@ body {
     /* or 111% */
     margin-bottom: 20.36px;
   }
-  .body-text {
-    margin-bottom: 20.08px;
+  .welcome__body p {
+    margin-bottom: 25px;
   }
-  .welcome__image img {
-    display: none;
-    
-  }
-  .button {
+  
+  .welcome__button {
     width: 100px;
     height: 34.14px;
     font-size: 10px;
@@ -353,10 +356,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 93px 0px 96px 0px;
 }
 .about__body {
   flex: 0 1 50%;
-  margin: 93px 0px 104px 0px;
+  align-self: flex-start;
+ 
+  
 }
 
 .title-body {
@@ -392,10 +398,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 40px;
   }
   .about__body {
     flex: 0 1 auto;
-    margin: 40px 0px;
+    margin-bottom: 40px;
     height: 350px;
   }
   .title-body {
@@ -405,7 +412,7 @@ body {
     font-size: 35px;
     line-height: calc(46 / 35 * 100%);
     margin: 0 auto;
-    margin-bottom: 40px;
+    margin-bottom: 46px;
     text-align: center;
     
   }
@@ -417,19 +424,21 @@ body {
     /* or 150% */
 
     color: #636060;
+    
   }
   .about__image {
     flex: 0 1 auto;
     max-width: 250px;
     height: auto;
-    margin-bottom: 95px;
+    margin-bottom: 0px;
   }
 }
 @media (max-width: 380px) {
-  
-  .about__body{
+  .about__container {
+    padding: 30px 0px 26px 0px;
+  }
+  .about__body {
     height: 307px;
-    margin-top: 30px;
     margin-bottom: 0px;
   }
   .title-body {
@@ -449,11 +458,10 @@ body {
   }
   .about__image {
     align-self: center;
-    margin-bottom: 25px;
+    
   }
   .about__image img {
     max-width: 150px;
-
     min-height: 147px;
   }
 }
@@ -724,7 +732,7 @@ body {
 /*------------END--SERVISE---------*/
 /*--------------PRICES--------------*/
 .main__prices {
-  padding: 40px 0px 115px 0px;
+  padding: 40px 0px 114px 0px;
 }
 .prices__container {
   display: flex;
@@ -920,7 +928,8 @@ body {
 }
 @media (max-width: 380px) {
   .main__prices {
-    padding-top: 25px;
+    padding:  25px 0px 40px 0px;
+    
   }
   .prices__container {
     flex-direction: column;
@@ -930,7 +939,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 17px;
   }
   .prices__contacts {
     margin-top: 0px;
@@ -974,23 +983,24 @@ body {
     font-size: 20px;
     line-height: calc(35 / 20 * 100%);
     color: #000000;
-    margin-bottom: 14px;
+    margin-bottom: 20px;
     text-align: center;
   }
   .btn3 {
-    margin-bottom: 42px;
+    margin-bottom: 0px;
   }
   .contacts__img {
     display: none;
   }
   .contacts__button {
-    padding: 8px 22px;
-  }
-  .contacts__link {
+    width: 121px;
+    height: 35px;
+   
     font-size: 15px;
     line-height: calc(20 / 15 * 100%);
-    /* identical to box height */
+    
   }
+  
 }
 /*----------------END----PRICES-------------*/
 /*-------------------CONTACTS----------------*/
@@ -1104,7 +1114,7 @@ body {
     margin-left: 0px;
     margin-top: 0px;
     width: 450px;
-    margin-bottom: 250px;
+    margin-bottom: 248px;
   }
   .city__item {
     margin-top: 61px;
@@ -1135,6 +1145,9 @@ body {
     width: 300px;
     align-self: center;
     margin-bottom: 128px;
+  }
+  .contact__btn {
+    margin-right: 20px;
   }
 
   .contact__img {
@@ -1187,7 +1200,7 @@ body {
 /*-------------------CONTACT END--------------------*/
 /*--------------------------FOOTER-------------------*/
 .footer {
-  padding: 40px 0px;
+  padding: 40px 0;
   height: 130px;
 }
 
@@ -1253,7 +1266,8 @@ transition: all 0.3s;
 }
 @media (max-width: 768px) {
   .footer {
-    padding: 33px 279px 18px;
+    padding-top: 32px;
+    padding-bottom: 18px;
     height: 181px;
   }
   .footer__content {
@@ -1268,26 +1282,17 @@ transition: all 0.3s;
 }
 @media (max-width: 380px) {
   .footer {
-    padding-top: 23px;
-    padding-bottom: 6px;
-  }
-  .footer__content {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #000000;
+    padding: 22px 85px 7px;
+    height: 146px;
   }
   .footer__data {
-    margin-bottom: 16px;
+    
+    margin-right: 0px; 
   }
-  .footer__dev {
-    margin-bottom: 3px;
+  .footer__rs{
+    margin-bottom: 0px;
   }
-  .footer__social {
-    height: 50px;
-    justify-content: center;
-    padding: 9px 0px;
-  }
+  
   .footer__social img :not(:last-child) {
     margin-right: 20px;
   }
