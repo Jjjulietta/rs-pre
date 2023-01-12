@@ -93,6 +93,7 @@ body {
 @media (max-width: 768px) {
   ._container {
     max-width: 668px;
+    
     margin: 0 auto;
   }
   .header{
@@ -101,6 +102,9 @@ body {
   .header__body {
     
     margin: 35px 0px;
+  }
+  .menu__list {
+    flex-wrap: wrap;
   }
   .header__logo {
     align-self: center;
@@ -116,7 +120,7 @@ body {
   }
   .header__body {
     height: 24px;
-    margin: 36px 0px;
+    margin: 34px 0px;
   }
   
     
@@ -144,21 +148,21 @@ body {
     top: 0px;
     right: -250px;
     width: 250px;
-    height: 380px;
+    height: 395px;
     padding: 30px;
     transition: all 2s ease 0s;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-around;
 
-    background-color: #bcc5b7;
+    background-color: #b8b8b8;;
     z-index: 6;
   }
   .menu__list li a {
     font-size: 25px;
     font-weight: 700;
     line-height: 200%;
-    color: #3b7418;
+    color: #499A18;
   }
   .menu__list:hover {
     color: #499a18;
@@ -171,7 +175,7 @@ body {
     width: 20px;
     height: 2px;
     transform: rotate(45deg);
-    background-color: #3b7418;
+    background-color: #499A18;
   }
   .menu__close::after {
     content: "";
@@ -182,7 +186,7 @@ body {
     height: 20px;
     transform: rotate(45deg);
     translate: -9px -9px;
-    background-color: #3b7418;
+    background-color: #499A18;
   }
   .active {
     right: 0px;
@@ -307,7 +311,7 @@ body {
 }
 @media (max-width: 380px) {
   .main__welcome {
-    padding: 24px 0px;
+    padding: 25px 0px;
     height: 300px;
   }
   .welcome__container{
@@ -435,7 +439,7 @@ body {
 }
 @media (max-width: 380px) {
   .about__container {
-    padding: 30px 0px 26px 0px;
+    padding: 30px 0px 24px 0px;
   }
   .about__body {
     height: 307px;
@@ -683,13 +687,13 @@ body {
 }
 @media (max-width: 380px) {
   .main__servise {
-    padding: 30px 0px 30px 0px;
+    padding: 30px 0px 29px 0px;
   }
   .servise__header {
     align-items: flex-start;
     flex-wrap: wrap;
     
-    margin-bottom: 33px;
+    margin-bottom: 32px;
   }
   .servise__title {
     min-height: 69px;
@@ -702,7 +706,7 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     column-gap: 0px;
-    row-gap: 35px;
+    row-gap: 36px;
     justify-items: center;
   }
   .card {
@@ -1282,7 +1286,7 @@ transition: all 0.3s;
 }
 @media (max-width: 380px) {
   .footer {
-    padding: 22px 85px 7px;
+    padding: 22px 0px 7px;
     height: 146px;
   }
   .footer__data {
