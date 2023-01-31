@@ -31,7 +31,7 @@ h6 {
 html,
 body {
   
-  min-width: 1440px;
+ /* max-width: 1440px;*/
   height: 100%;
   line-height: 1;
   font-family: "Inter";
@@ -1089,12 +1089,12 @@ body {
   transition: all 0.3s;
   cursor: pointer;
 }
-.contact__body:focus {
+/*.contact__body:focus {
   background-color: #c1e698;
-}
-.contact__body:hover {
+}*/
+/*.contact__body:hover {
   background-color: #c1e698;
-}
+}*/
 .contact__hover {
   background-color: #c1e698;
 }
@@ -1198,8 +1198,7 @@ body {
   width: 16px;
   height: 16px;
 }
-.city {
-}
+ 
 .city__item {
   position: absolute;
   display: none;

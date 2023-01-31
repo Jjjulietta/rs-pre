@@ -1,11 +1,6 @@
-console.log(`Ваша оценка - 85 баллов 
+console.log(`Ваша оценка - 125 баллов 
 Отзыв по пунктам ТЗ:
-Выполненные пункты:
-1) Блок header\n2) Секция welcome\n3) Секция about\n4) Секция service\n5) Секция prices\n6) Секция contacts\n7) Блок footer\n8) Блок header\n9) Секция welcome\n10) Секция about\n11) Секция service\n12) Секция prices\n13) Секция contacts\n14) Блок footer\n15) нет полосы прокрутки
- при ширине страницы от 1440рх до 380px\n16) нет полосы прокрутки при ширине страницы от 380px до 320рх\n17) при ширине страницы 380рх панель навигации скрывается, появляется бургер-иконка\n18) при нажатии на бургер-иконку 
- плавно появляется адаптивное меню\n19) адаптивное меню соответствует цветовой схеме макета\n20) при нажатии 
- на крестик адаптивное меню плавно скрывается уезжая за экран\n21) ссылки в адаптивном меню работают,
-  обеспечивая плавную прокрутку по якорям (все, кроме Account, она пока просто закрывает меню)\n22) при клике по ссылке в адаптивном меню адаптивное меню плавно скрывается, также скрытие меню происходит если сделать клик вне данного окна 
+Выполненные пункты:\n1) При выборе одной услуги (нажатии одной кнопки), остальные карточки услуг принимают эффект blur, выбранная услуга остается неизменной\n2) Пользователь может нажать одновременно две кнопки услуги, тогда эта кнопка тоже принимает стиль активной и карточки с именем услуги выходят из эффекта blur. При этом пользователь не может нажать одновременно все три кнопки услуг\n3) Анимации плавного перемещения кнопок в активное состояние и карточек услуг в эффект blur\n4) При нажатии на dropdown кнопку появляется описание тарифов цен в соответствии с макетом. Внутри реализована кнопка order, которая ведет на секцию contacts, при нажатии на нее Accordion все еще остается открытым\n5) Пользователь может самостоятельно закрыть содержимое нажав на кнопку dropup, но не может одновременно открыть все тарифы услуг, при открытии нового тарифа предыдущее автоматически закрывается\n6) В зависимости от выбора пользователя появляется блок с адресом и телефоном офиса в определенном городе\n7) При нажатии на кнопку Call us реализован вызов по номеру, который соответствует выбранному городу
 
 `)
 /*------------------------BURGER----------------------------------------*/
@@ -179,6 +174,29 @@ let cardThree = document.getElementById("card-three");
 let cardFour = document.getElementById("card-four");
 let arrow = document.getElementById("contact-arrow");
 let titleCont = document.getElementById("cont-title");
+let contactImg = document.getElementById('contact-woman');
+let titleForm = document.querySelector('.contact-title');
+let contact = document.getElementById('contact');
+city.onmouseenter = function() {
+  city.classList.add('contact__hover')
+}
+city.onmouseleave = function(){
+  city.classList.remove('contact__hover')
+}
+contact.onclick = function(event) {
+  let target = event.target;
+  if(target != form && target != city && target != select && target.tagName != 'LI' && target.tagName != 'UL' && !select.classList.contains('opened')) {
+    city.classList.remove("select-selected");
+    cardOne.style.display = "";
+  cardTwo.style.display = "";
+  cardThree.style.display = "";
+  cardFour.style.display = "";
+  titleCont.style.marginBottom = "";
+  form.style.marginBottom = '';
+  title.innerHTML = "City";
+  contactImg.classList.remove('option');
+  }
+}
 
 form.onclick = function (event) {
   let target = event.target;
@@ -187,13 +205,13 @@ form.onclick = function (event) {
   cardThree.style.display = "";
   cardFour.style.display = "";
   titleCont.style.marginBottom = "";
+  form.style.marginBottom = '';
   select.classList.toggle("opened");
   title.innerHTML = "City";
   city.classList.add("select-selected");
   arrow.classList.toggle("openedArr");
-  /*let selectOpened = document.querySelectorAll(".opened");
-  if(selectOpened.length == 0) {arrow.classList.remove("openedArr")
-  form.classList.remove("contact__hover")}*/
+     
+  contactImg.classList.remove('option');
   
   
   if (target.tagName === "LI") {
@@ -201,33 +219,58 @@ form.onclick = function (event) {
     let cityTwo = document.getElementById("city-two");
     let cityThree = document.getElementById("city-three");
     let cityFour = document.getElementById("city-four");
+    
     if (target == cityOne) {
       title.innerHTML = cityOne.innerHTML;
       cardOne.style.display = "block";
       select.style.display = "";
+      
+      if (document.documentElement.clientWidth <= 768) {
+        titleCont.style.marginBottom = "61px";
+        form.style.marginBottom = '280px';
+      }
       if (document.documentElement.clientWidth <= 380) {
         titleCont.style.marginBottom = "42px";
+        contactImg.classList.add('option');
       }
     } else if (target == cityTwo) {
       title.innerHTML = cityTwo.innerHTML;
       cardTwo.style.display = "block";
       select.style.display = "";
+      
+      if (document.documentElement.clientWidth <= 768) {
+        titleCont.style.marginBottom = "61px";
+        form.style.marginBottom = '280px';
+      }
       if (document.documentElement.clientWidth <= 380) {
         titleCont.style.marginBottom = "42px";
+        contactImg.classList.add('option');
       }
     } else if (target == cityThree) {
       title.innerHTML = cityThree.innerHTML;
       cardThree.style.display = "block";
       select.style.display = "";
+      
+      if (document.documentElement.clientWidth <= 768) {
+        titleCont.style.marginBottom = "61px";
+        form.style.marginBottom = '280px';
+      }
       if (document.documentElement.clientWidth <= 380) {
         titleCont.style.marginBottom = "42px";
+        contactImg.classList.add('option');
       }
     } else {
       title.innerHTML = cityFour.innerHTML;
       cardFour.style.display = "block";
       select.style.display = "";
+      
+      if (document.documentElement.clientWidth <= 768) {
+        titleCont.style.marginBottom = "61px";
+        form.style.marginBottom = '280px';
+      }
       if (document.documentElement.clientWidth <= 380) {
         titleCont.style.marginBottom = "42px";
+        contactImg.classList.add('option');
       }
     }
   }
