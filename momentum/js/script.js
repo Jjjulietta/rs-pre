@@ -1,7 +1,5 @@
 /*----------TIME----------------*/
 const time = document.querySelector('.time');
-console.log(time);
-
 function showTime(){
     const date = new Date();
     const currentTime = date.toLocaleTimeString()
@@ -19,7 +17,6 @@ function showDate() {
     const date = new Date();
     const options = {weekday: 'long',  month: 'long',  day: 'numeric'}
     const currentDate = date.toLocaleDateString('en-US', options);
-    console.log(currentDate);
     day.textContent = `${currentDate}`;
   
 }
@@ -29,7 +26,7 @@ function showDate() {
 function getTimeOfDay() {
     const date = new Date();
     const hours = date.getHours();
-    console.log(hours)
+   
     if(hours >= 0 && hours < 6) {return 'Night'} 
     else if(hours < 12 && hours >= 6) {return 'Morning';} 
     else if(hours  >= 12 && hours < 18) {return 'Afternoon';} 
@@ -39,8 +36,7 @@ function getTimeOfDay() {
 function showGreeting() {
     const greeting = document.querySelector('.greeting');
     let timeOfDay = getTimeOfDay();
-    console.log(timeOfDay); 
-    
+       
     greeting.textContent = `Goog ${timeOfDay},`;
 };
 
@@ -100,13 +96,49 @@ sliderNext.addEventListener('click', getSliderNext);
 sliderPrev.addEventListener('click', getSliderPrev);
 
 /*----------------------WEATHER----------------------------------*/
+const weatherIcon = document.querySelector('.weather-icon');
+const temperature = document.querySelector('.temperature');
+const weatherDescription = document.querySelector('.weather-description');
+const wind = document.querySelector('.wind');
+const humidity = document.querySelector('.humidity');
+const weatherErr = document.querySelector('.weather-error');
+const city = document.querySelector('.city');
+function getLocalStor() {
+        if(localStorage.getItem('city')){
+        city.value = localStorage.getItem("city");
+    console.log(city.value)
+    } else {city.value = 'Minsk'}
+}
+window.addEventListener("load", getLocalStor);
+
 async function getWeather() {
-const url = `https://api.openweathermap.org/data/2.5/weather?q=Минск&lang=ru&appid=c8243da569a99643213863e851fa9cbf&units=metric`
+
+const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=c8243da569a99643213863e851fa9cbf&units=metric`;
 const res = await fetch(url);
 const data = await res.json();
-console.log(data.weather[0].id, data.weather[0].description, data.main.temp);
+
+weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+temperature.textContent = `${Math.round(data.main.temp)} C`;
+weatherDescription.textContent = `${data.weather[0].description}`;
+wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`
+humidity.textContent = `Humidity: ${data.main.humidity}%`;
+
 }
-getWeather();
+window.addEventListener('load', getWeather);
+function setLocalStor() {
+    localStorage.setItem("city", city.value)
+
+}
+window.addEventListener("beforeunload", setLocalStor);
+city.addEventListener('change', getWeather);
+
+
+
+
+
+
+
+
 
 
 
