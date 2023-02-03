@@ -9,6 +9,7 @@
 }
 a {
   text-decoration: none;
+  color: inherit;
 }
 ul,
 ol,
@@ -29,7 +30,8 @@ h6 {
 }
 html,
 body {
-  max-width: 1440px;
+  
+ /* max-width: 1440px;*/
   height: 100%;
   line-height: 1;
   font-family: "Inter";
@@ -47,6 +49,7 @@ body {
 .wrapper {
   overflow: hidden;
   min-height: 100%;
+  
 }
 /*-----------HEADER--------*/
 .header {
@@ -522,11 +525,15 @@ body {
   transition: all 0.3s;
 }
 
-.buttons-servise__btn2:focus {
+/*.buttons-servise__btn2:focus {
   background: #e06733;
   color: #ffffff;
-}
-.buttons-servise__btn2:hover{
+}*/
+/*.buttons-servise__btn2:hover{
+  background: #e06733;
+  color: #ffffff;
+}*/
+.hover {
   background: #e06733;
   color: #ffffff;
 }
@@ -585,6 +592,7 @@ body {
 .card {
   max-width: 330px;
   max-height: 450px;
+  transition: all 0.5s;
 }
 .card__content {
   display: flex;
@@ -786,6 +794,7 @@ body {
   justify-content: space-between;
   margin-bottom: 6px;
   padding-bottom: 12px;
+  cursor: pointer;
 }
 .prices__link {
   font-weight: 700;
@@ -888,6 +897,25 @@ body {
   max-width: 152px;
   height: 178px;
 }
+
+/*----------------PRICES CARD----------*/
+.opened {
+  height: 154px;
+  background: #d6e7d2;
+
+  border-radius: 20px;
+}
+.opened-arrow {
+  background-image: url(./assets/icons/acc_btn_open_price.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 16px;
+  height: 16px;
+}
+.opened-header {
+  border-bottom: 0.5px solid #aea1a1;
+}
+
 @media (max-width: 768px) {
   .main__prices {
     padding-bottom: 84px;
@@ -1061,17 +1089,25 @@ body {
   transition: all 0.3s;
   cursor: pointer;
 }
-.contact__body:focus {
+/*.contact__body:focus {
   background-color: #c1e698;
-}
-.contact__body:hover {
+}*/
+/*.contact__body:hover {
+  background-color: #c1e698;
+}*/
+.contact__hover {
   background-color: #c1e698;
 }
 .contact-title {
   margin-left: 20px;
 }
 .contact__btn {
-  margin-right: 33.5px;
+  background-image: url(./assets/icons/acc_btn_close_cont.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 16px;
+  height: 16px;
+  margin-right: 35px;
 }
 .contact__city {
   position: absolute;
@@ -1092,6 +1128,139 @@ body {
 }
 .contact__city:focus {
   background: #c1e698;
+}
+
+/*------------CONTACT FORM SCRIPT-----------------*/
+.option {
+  display: none;
+}
+.opened {
+  opacity: 1;
+  visibility: visible;
+}
+.select-selected {
+  background: #c1e698;
+}
+.option-one {
+  display: block;
+  width: 380px;
+  height: 62px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 40px;
+  /* or 250% */
+
+  letter-spacing: 0.05em;
+
+  color: #717171;
+
+  border-bottom: 1px solid #717171;
+}
+.option-outer {
+  display: block;
+  width: 380px;
+  height: 35px;
+  margin-bottom: 12px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 40px;
+  /* or 250% */
+
+  letter-spacing: 0.05em;
+
+  color: #499a18;
+  border-bottom: 1px solid #d9d9d9;
+}
+.option-outer:hover {
+  width: 380px;
+  height: 35px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 40px;
+  /* or 250% */
+
+  letter-spacing: 0.05em;
+
+  color: #717171;
+
+  border-bottom: 1px solid #717171;
+}
+.openedArr {
+  background-image: url(./assets/icons/acc_btn_open_cont.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 16px;
+  height: 16px;
+}
+ 
+.city__item {
+  position: absolute;
+  display: none;
+  margin-left: 0px;
+  margin-top: 47px;
+  width: 100%;
+  min-height: 214px;
+  padding: 17px 76px 32px 33px;
+  z-index: 2;
+  background: #edf2ec;
+  border: 1px solid #000000;
+  border-radius: 20px;
+}
+.city__contact {
+  display: flex;
+}
+.col-one {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 16px;
+  line-height: 40px;
+  /* or 250% */
+
+  letter-spacing: 0.05em;
+
+  color: #000000;
+}
+
+.col-two {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 4.5px;
+  font-size: 16px;
+  line-height: 40px;
+  /* identical to box height, or 250% */
+
+  letter-spacing: 0.05em;
+
+  color: #717171;
+  margin-bottom: 24px;
+}
+
+.button__phone {
+  border: 1px solid #e06733;
+  border-radius: 5px;
+  margin-left: 129px;
+  width: 122px;
+  height: 26px;
+  text-align: center;
+}
+.phone__link {
+  padding: 7px 29px;
+
+  font-family: "Inika";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 13px;
+
+  color: #717171;
 }
 
 @media (max-width: 768px) {
