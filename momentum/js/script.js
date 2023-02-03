@@ -1,3 +1,4 @@
+
 /*----------TIME----------------*/
 const time = document.querySelector('.time');
 function showTime(){
@@ -118,7 +119,7 @@ const res = await fetch(url);
 const data = await res.json();
 
 weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-temperature.textContent = `${Math.round(data.main.temp)} C`;
+temperature.textContent = `${Math.round(data.main.temp)}°C`;
 weatherDescription.textContent = `${data.weather[0].description}`;
 wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`
 humidity.textContent = `Humidity: ${data.main.humidity}%`;
@@ -149,6 +150,72 @@ async function getQuotes() {
 
 getQuotes();
 changeQuote.addEventListener('click', getQuotes);
+
+/*----------------------AUDI-------------------------*/
+import playList from "./play_list.js";
+//playList by JS
+
+
+const playPrevBtn = document.querySelector('.play-prev');
+const playNextBtn = document.querySelector('.play-next');
+const play = document.querySelector('.play');
+const playListContainer = document.querySelector('.play-list');
+playList.forEach(el =>{
+    const li = document.createElement('li')
+    li.classList.add('play-item');
+    li.textContent = el.title;
+    playListContainer.append(li);
+})
+const lis = document.querySelectorAll('.play-item')
+const audio = new Audio();
+let isPlay = false;
+let playNum = 0;
+function playAudio() {
+    
+    console.log(isPlay)
+    console.log(playNum)
+    if(!isPlay){
+    audio.src = playList[playNum].src
+    audio.currentTime = 0;
+    audio.play();        
+    play.classList.add('pause');
+    lis[playNum].classList.add('item-active'); 
+    return isPlay = true;
+      } 
+    else if(isPlay) {
+        audio.pause();
+        play.classList.remove('pause');
+        lis[playNum].classList.remove('item-active');
+        return isPlay = false;
+    }
+    
+}
+
+
+function playNext() {
+    if(playNum < playList.length-1 && !isPlay) {
+         playNum = playNum + 1} 
+        else if(playNum == playList.length-1 && !isPlay) {
+            playNum = 0
+
+        }
+        playAudio();
+    };
+
+function playPrev() {
+    if(playNum > 0 && !isPlay) { playNum = playNum - 1} 
+    else if( playNum == 0 && !isPlay) {
+         playNum = playList.length-1
+    }
+    playAudio();
+};
+play.addEventListener('click', playAudio);
+playNextBtn.addEventListener('click', playNext);
+playPrevBtn.addEventListener('click', playPrev);
+
+
+
+
 
 
 
