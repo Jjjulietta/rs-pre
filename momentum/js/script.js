@@ -160,36 +160,50 @@ const playPrevBtn = document.querySelector('.play-prev');
 const playNextBtn = document.querySelector('.play-next');
 const play = document.querySelector('.play');
 const playListContainer = document.querySelector('.play-list');
+const song = document.querySelector('.song');
+
 playList.forEach(el =>{
     const li = document.createElement('li')
     li.classList.add('play-item');
     li.textContent = el.title;
     playListContainer.append(li);
 })
-const lis = document.querySelectorAll('.play-item')
+
+const lis = document.querySelectorAll('.play-item');
+lis.forEach(el =>{
+    let div = document.createElement('DIV');
+    div.classList.add('item-icon');
+    el.prepend(div);
+    console.log(div);
+    }
+)
+const songItem = document.querySelectorAll('.item-icon')
 const audio = new Audio();
 let isPlay = false;
 let playNum = 0;
-function playAudio() {
+async  function playAudio() {
     
     console.log(isPlay)
     console.log(playNum)
     if(!isPlay){
     audio.src = playList[playNum].src
     audio.currentTime = 0;
-    audio.play();        
+    audio.play();  
     play.classList.add('pause');
+    song.textContent = playList[playNum].title; 
+    
     lis[playNum].classList.add('item-active'); 
-    return isPlay = true;
-      } 
+    return isPlay = true;     
+          } 
     else if(isPlay) {
         audio.pause();
         play.classList.remove('pause');
+        
         lis[playNum].classList.remove('item-active');
-        return isPlay = false;
+       return isPlay = false;
     }
-    
 }
+
 
 
 function playNext() {
@@ -213,10 +227,56 @@ play.addEventListener('click', playAudio);
 playNextBtn.addEventListener('click', playNext);
 playPrevBtn.addEventListener('click', playPrev);
 
+audio.addEventListener('ended', ()=>{isPlay = false; lis[playNum].classList.toggle('item-active'); 
+ playNext()})
 
 
+/*--------------------AUDIO PLAYER--------------------*/
 
+const progress = document.querySelector('.progress');
+const audioCurrent = document.querySelector('.time-cur')
+const timeline = document.querySelector('.timeline');
+const volumeBtn = document.querySelector('.volume-btn');
+const volumeSlider = document.querySelector('.volume-slider');
+const volumePercent = document.querySelector('.volume-percentage');
+const timeLength = document.querySelector('.time-length');
+audio.addEventListener('loadeddata', ()=>{
+timeLength.textContent = getTimeSec(audio.duration);
+audio.volume = 0.5;
+}, false)
+timeline.addEventListener('click', (e)=>{
+    const timelineWidth = window.getComputedStyle(timeline).width;
+    const timeToSeek = e.offsetX/parseInt(timelineWidth)*audio.duration;
+    audio.currentTime = timeToSeek;
+    }, false)
 
+setInterval(()=>{
+    progress.style.width = audio.currentTime/audio.duration*100 + '%';
+    audioCurrent.textContent = getTimeSec(audio.currentTime)
+}, 500)
+volumeSlider.addEventListener('click', (e)=>{
+    const sliderWidth = window.getComputedStyle(volumeSlider).width;
+    const newVolume = e.offsetX/parseInt(sliderWidth);
+    audio.volume = newVolume;
+    volumePercent.style.width = newVolume*100 + '%';
+}, false)
+
+volumeBtn.addEventListener('click', ()=>{
+    audio.muted = !audio.muted;
+    if(audio.muted){
+        volumeBtn.classList.add('volume-active')}
+        else {volumeBtn.classList.remove('volume-active')}
+    }
+)
+function getTimeSec (num) {
+let seconds = parseInt(num);
+let minutes = parseInt(seconds/60);
+seconds -= minutes*60;
+const hours = parseInt(minutes/60);
+if(hours == 0) {return `${minutes}:${String(seconds%60).padStart(2, 0)}`};
+return `${String(hours).padStart(2, 0)}: ${minutes}:${String(seconds%60).padStart(2, 0)}`;
+
+}
 
 
 
