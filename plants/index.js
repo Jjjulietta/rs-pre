@@ -44,10 +44,11 @@ servise.onclick = function (event) {
       buttonGar.classList.remove("hover");
       buttonLawn.classList.remove("hover");
       buttonPlant.classList.remove("hover");
-    }
-  }
+    } counter = 0;
+  } 
 };
 let counter = 0;
+console.log(counter)
 buttons.onclick = function (event) {
   let target = event.target;
 
