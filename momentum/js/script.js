@@ -1,28 +1,51 @@
 
+/*------------------DICTIONARY---------------------*/
+const greetingTranslation = {
+    ru: { morning: 'Доброе утро,', afternoon: "Добрый день,", evening: "Добрый вечер,", night: "Доброй ночи,"},
+    en : 'Good'
+}
+
+const weatherTtanslation = {
+    ru: { wind : 'Скорость ветра', humidity: 'Влажность' },
+    en: { wind : 'Wind speed', humidity: 'Humidity' }
+}
+
+const settingsTranslation = {
+    ru: { btnRus : 'Рус', btnEng : 'Англ', titleLang: 'ЯЗЫК', close: 'закрыть' },
+    en: { btnRus : 'Rus', btnEng : 'Eng', titleLang: 'LANGUAGE', close: 'close'}
+}
+
 /*----------TIME----------------*/
 const time = document.querySelector('.time');
-function showTime(){
+const lang = document.querySelector('.lang');
+let l;
+function showTime(l){
     const date = new Date();
     const currentTime = date.toLocaleTimeString()
-
+    l = lang.innerHTML;
     time.textContent = `${currentTime}`;
-    showDate()
-    showGreeting();
+    showDate(l)
+    showGreeting(l);
     setTimeout(showTime, 1000);
+    
 }
-showTime();
+
 /*--------------DATE------------------------*/
 
-function showDate() {
+function showDate(l = 'Eng') {
     const day = document.querySelector('.date');
     const date = new Date();
     const options = {weekday: 'long',  month: 'long',  day: 'numeric'}
-    const currentDate = date.toLocaleDateString('en-US', options);
+    let currentDate = date.toLocaleDateString('en-US', options);
     day.textContent = `${currentDate}`;
+    if(l == 'Rus') {
+        currentDate = date.toLocaleDateString('ru-RU', options);
+        return day.textContent = `${currentDate}`;
+    }
   
 }
 /*-----------------GREETING-------------------*/
-
+const name = document.querySelector('.name');
 
 function getTimeOfDay() {
     const date = new Date();
@@ -32,24 +55,30 @@ function getTimeOfDay() {
     else if(hours < 12 && hours >= 6) {return 'Morning';} 
     else if(hours  >= 12 && hours < 18) {return 'Afternoon';} 
     else if(hours >= 18 && hours < 24) {return 'Evening';} 
-}
+    }
 
-function showGreeting() {
+
+function showGreeting(l = 'Eng') {
     const greeting = document.querySelector('.greeting');
-    let timeOfDay = getTimeOfDay();
-       
-    greeting.textContent = `Goog ${timeOfDay},`;
+       let timeOfDay = getTimeOfDay();
+     greeting.textContent = `${greetingTranslation.en} ${timeOfDay},`; 
+     if(l == 'Rus') {
+        if(timeOfDay == 'Morning') { return greeting.textContent = `${greetingTranslation.ru.morning}`} 
+        else if(timeOfDay == 'Afternoon') {return greeting.textContent = `${greetingTranslation.ru.afternoon}`} 
+        else if(timeOfDay == 'Evening') { return greeting.textContent = `${greetingTranslation.ru.evening}`}
+        else if(timeOfDay == 'Night') { return greeting.textContent = `${greetingTranslation.ru.night}`}
+     }
 };
 
 function setLocalStorage() {
-    const name = document.querySelector('.name');
+    
     localStorage.setItem('name', name.value)
     
 }
 window.addEventListener('beforeunload', setLocalStorage);
 function getLocalStorage() {
     if(localStorage.getItem('name')) {
-        const name = document.querySelector('.name');
+        
         name.value = localStorage.getItem('name')
     }
 }
@@ -112,26 +141,32 @@ function getLocalStor() {
 }
 window.addEventListener("load", getLocalStor);
 
-async function getWeather() {
-
-const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=c8243da569a99643213863e851fa9cbf&units=metric`;
+async function getWeather(l) {
+l = lang.innerHTML;
+let langWeather;
+if(l == 'Eng'){ langWeather = 'en'} else if(l == 'Rus') { langWeather = 'ru'}
+const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${langWeather}&appid=c8243da569a99643213863e851fa9cbf&units=metric`;
 const res = await fetch(url);
 const data = await res.json();
-
 weatherIcon.classList.add(`owf-${data.weather[0].id}`);
 temperature.textContent = `${Math.round(data.main.temp)}°C`;
 weatherDescription.textContent = `${data.weather[0].description}`;
-wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`
-humidity.textContent = `Humidity: ${data.main.humidity}%`;
+
+if(langWeather == 'en'){  wind.textContent = `${weatherTtanslation.en.wind}: ${Math.round(data.wind.speed)} m/s`;
+humidity.textContent = `${weatherTtanslation.en.humidity}: ${data.main.humidity}%`;}
+else if(langWeather == 'ru') { wind.textContent = `${weatherTtanslation.ru.wind}: ${Math.round(data.wind.speed)} м/с`
+humidity.textContent = `${weatherTtanslation.ru.humidity}: ${data.main.humidity}%`; }
 
 }
+
+city.addEventListener('change', getWeather);
 window.addEventListener('load', getWeather);
 function setLocalStor() {
     localStorage.setItem("city", city.value)
 
 }
 window.addEventListener("beforeunload", setLocalStor);
-city.addEventListener('change', getWeather);
+
 
 /*----------------------QUOTES-------------------------------*/
 
@@ -139,16 +174,20 @@ const quote = document.querySelector('.quote');
 const author = document.querySelector('.author');
 const changeQuote = document.querySelector('.change-quote');
 
-async function getQuotes() {
-    const quotes = '../data.json';
-    const res = await fetch(quotes);
-    const data = await res.json();
+async function getQuotes(l) {
+    l = lang.innerHTML;
+    let quotes;
+    if(l == 'Eng') { quotes = '../data.json'} if(l == 'Rus') {
+        quotes = '../data_ru.json'
+    }    
+    let res = await fetch(quotes);
+    let data = await res.json();
     let quoteNew = data[Math.floor(Math.random()*data.length)]
     quote.textContent = `"${quoteNew.text}"`;
     author.textContent = quoteNew.author;
 }
 
-getQuotes();
+getQuotes(l)
 changeQuote.addEventListener('click', getQuotes);
 
 /*----------------------AUDI-------------------------*/
@@ -174,7 +213,7 @@ lis.forEach(el =>{
     let div = document.createElement('DIV');
     div.classList.add('item-icon');
     el.prepend(div);
-    console.log(div);
+    
     }
 )
 const songItem = document.querySelectorAll('.item-icon')
@@ -278,12 +317,88 @@ return `${String(hours).padStart(2, 0)}: ${minutes}:${String(seconds%60).padStar
 
 }
 
+/*------------------POPAP------------------------*/
+
+const settingBtn = document.querySelector('.settings-btn');
+const popap = document.querySelector('.popap');
+const popapBody = document.querySelector('.popap-body');
+const englBtn = document.querySelector('.english-btn');
+const rusBtn = document.querySelector('.russian-btn');
+const closePopap = document.querySelector('.popap-close');
+const langTitle = document.querySelector('.languages-title');
+
+console.log(rusBtn);
+settingBtn.addEventListener('click', ()=>{
+    popap.classList.add('popap-open');
+    popapBody.classList.add('popap-active');
+   
+}
+)
+
+closePopap.addEventListener('click', ()=>{
+    popap.classList.remove('popap-open');
+    popapBody.classList.remove('popap-active');
+    
+}
+)
+
+/*----------------TRANSLATION------------*/
+
+englBtn.addEventListener('click', ()=>  {
+    lang.innerHTML = 'Eng'
+    l = lang.innerHTML;
+    if(city.value == 'Минск') {city.value = 'Minsk'}
+    showTime(l);
+    getWeather(l);
+    getQuotes(l);
+    settingsTranslat(l)
+} 
+    )
+
+rusBtn.addEventListener('click', ()=>{
+    lang.innerHTML = 'Rus'
+    l = lang.innerHTML;
+    name.placeholder = '[Введите имя]';
+    if(city.value == 'Minsk') {city.value = 'Минск'}
+    showTime(l);
+    getWeather(l);
+    getQuotes(l)
+    settingsTranslat(l)
+}  
+)
 
 
+/*window.addEventListener('beforeunload', setLocalStorageLang);*/
+window.addEventListener('load', showTime())
 
 
+/*function setLocalStorageLang() {
+    localStorage.setItem('lang', lang.value = lang.textContent)
+    }
+ 
+function getLocalStorageLang() {
+    if(localStorage.getItem('lang')) {
+       return lang.value = localStorage.getItem('lang')
+    }
+}*/
 
+function settingsTranslat(l) {
+   l = lang.innerHTML;
+   if(l == 'Eng') {
+   langTitle.innerHTML = `${settingsTranslation.en.titleLang}`;
+   englBtn.innerHTML = `${settingsTranslation.en.btnEng}`;
+   rusBtn.innerHTML = `${settingsTranslation.en.btnRus}`;
+   closePopap.innerHTML = settingsTranslation.en.close;
+   }
+   else if(l == 'Rus') {
+    langTitle.innerHTML = `${settingsTranslation.ru.titleLang}`
+    englBtn.innerHTML = settingsTranslation.ru.btnEng;
+    rusBtn.innerHTML = settingsTranslation.ru.btnRus;
+    closePopap.innerHTML = settingsTranslation.ru.close;
+   }
+}
+settingsTranslat(l)
 
-
+/*-------------------PICTURES API---------------------------*/
 
 
