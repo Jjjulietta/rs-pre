@@ -52,7 +52,7 @@
       <button class="slide-prev slider-icon"></button>
       <button class="slide-next slider-icon"></button>
     </div>
-    <time class="time"></time>
+    <div class="time-div"><time class="time"></time></div>
     <date class="date"></date>
     <div class="greeting-container">
       <span class="greeting"></span>
@@ -84,9 +84,73 @@
           <div class="russian-btn">Rus</div>
         </div>
       </div>
+      <div class="popap-img">
+        <h2 class="images-title">IMAGE sourses</h2>
+        <ul class="img-btn">
+          <li class="git-img">GitHub</li>
+          <li class="api1-img">
+            <h3 class="api1-name">Unsplash</h3>
+            <div class="change-api1">
+              <input type="text" class="api1-tag" value="">
+            </div>
+          </li>
+          <li class="api2-img">
+            <h3 class="api2-name">Flickr</h3>
+            <div class="change-api2">
+              <input type="text" class="api2-tag" value="">
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="popap-constructor">
+        <h2 class="constr-title">CONSTRUCTOR</h2>
+        <ul class="constr-btn">
+          <li class="time-btn">time</li>
+          <li class="day-btn">date</li>
+          <li class="greet-btn">greeting</li>
+          <li class="quote-btn">quote</li>
+          <li class="weather-btn">weather</li>
+          <li class="audio-btn">audio</li>
+        </ul>
+      </div>
+      <div class="todo-btn">toDoList</div>
       <div class="popap-close">close</div>
     </div>
-  </div>
+    <div class="popap-todo">
+      <div class="task-add">
+        <h2 class="task-title">Add task</h2>
+        <div class="task-block" >
+          <label for="task" class="task-name">task</label>
+          <input  type="text" class="task-text" name="inbox" autofocus>
+          <br>
+          <label for="date" class="date-name">date</label>
+          <input type="date" name="date" id="date" class="task-date"><input type="time" class="task-time">     
+          <button type="button" class="button-save">save</button>
+          <button type="button" class="button-cancel">cancel</button>
+        </div>
+      </div>
+      <div class="task-save">
+        <div class="inbox-task">inbox</div>
+        <div class="today-task">today</div>
+        <div class="done-task">done</div>
+      </div>
+    </div>
+    <div class="popap-inbox">
+      <div class="inbox-calendar">
+        <h2 class="month-name"></h2>
+        <div class="calendar"></div>
+        <div class="next-month">
+          <div class="month-next">next month</div><div class="arrow"><span class="arrow-top"></span><span class="arrow-bottom"></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="popap-today">
+      <h2 class="today-title">List task TODAY</h2>
+    </div>
+    <div class="popap-done">
+      <h2 class="done-title">DONE</h2>
+    </div>
+  </div>  
   <script type="module"  src="js/script.js"></script>
 </body>
 </html>
