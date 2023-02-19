@@ -54,7 +54,7 @@ body {
 }
 
 .player{
-
+height: 220px;
 background-color:rgba(0, 0, 0, 0.2);
 padding: 5px;
 transition: all 1s;
@@ -65,7 +65,7 @@ transition: all 1s;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 250px;
+  max-width: 250px;
   margin-bottom: 10px;
 }
 
@@ -140,8 +140,15 @@ transition: all 1s;
   
   
 }
+.player-list{
+  display: none;
+ 
+}
+
 .play-list {
   text-align: left;
+  visibility: visible;
+  opacity: 1;
 }
 
 .play-item {
@@ -451,10 +458,30 @@ transition: all 1s;
   opacity: 1;
 }
 
+.rs-link{
+  min-width: 50px;
+  margin-right: 10px;
+}
+
+.rs-icon{
+  display: inline-block;
+  
+  height: auto;
+  background-color: rgba(250, 250, 250, 0.5);
+    
+}
+
+.rs-icon:hover{
+  background-color: #f8d00a;
+}
+
 .github {
+  display: inline-flex; 
+  align-items: center;
   opacity: 0.5;
   font-size: 14px;
 }
+
 .github-name {
   cursor: pointer;
   margin-right: 10px;
@@ -513,7 +540,7 @@ transition: all 1s;
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(100, 100, 100, 0.8);
   z-index: 30;
   opacity: 0;
   visibility: hidden;
@@ -621,9 +648,6 @@ visibility: visible;
   background-color: rgba(250, 250, 250, 0.1);
 }
 
-.img-btn li{
- 
-}
 
 .img-btn li:hover {
 text-decoration: underline;
@@ -934,7 +958,7 @@ button{
 }
 
 .month-name{
-  width: 50px;
+  max-width: 50px;
   height: 20px;
   font-size: 14px;
   color: #f8d00a;
@@ -942,7 +966,7 @@ button{
 }
 
 .month-name_next{
-  width: 50px;
+  max-width: 50px;
   height: 20px;
   font-size: 14px;
   color: #f8d00a;
@@ -994,7 +1018,7 @@ align-items: center;
 .inbox-list{
   display: flex;
   flex-direction: column;
- min-width: 200px;
+ max-width: 200px;
  min-height: 100px;
  background-color: rgba(250, 250, 250, 0.1);
  color: #f8d00a;
@@ -1063,8 +1087,6 @@ th{
   font-size: 12px;
   border-radius: 5px;
   transition: all 0.5s;
-  padding: 10px;
-  transition: all 0.5s;
   opacity: 0;
   visibility: hidden;
 }
@@ -1126,7 +1148,7 @@ align-items: center;
 .inbox-list_next{
   display: flex;
   flex-direction: column;
- min-width: 200px;
+ max-width: 200px;
  min-height: 100px;
  background-color: rgba(250, 250, 250, 0.1);
  color: #f8d00a;
@@ -1185,7 +1207,7 @@ margin-bottom: 10px;
 
 .popap-today {
   position: fixed;
-  min-width: 200px;
+  max-width: 200px;
   min-height: 100px;
   left: 220px;
   bottom: 40px;
@@ -1298,4 +1320,153 @@ margin-bottom: 10px;
   display: flex;
   align-items: flex-start;
 
+}
+
+/*------------------------------------------------*/
+@media (max-width: 768px) {
+  .popap-inbox{
+    left: 300px;
+    top: -400px;
+    bottom: auto;
+    max-width: 350px;
+   
+   
+  }
+  .inbox-open{
+    top: 20px;
+  }
+  .inbox-next{
+    left: 650px;
+    top: 20px;
+    bottom: auto;
+    max-width: 350px;
+    
+  }
+  .inbox-next_open{
+    left: 300px;
+   
+  }
+}
+
+@media (max-width: 650px) {
+  .popap-body {
+    background-color: rgba(0, 0, 0, 1);
+  }
+
+  .popap-todo {
+    max-width: 200px;
+    min-height: 200px;
+    left: 280px;
+   
+  }
+
+
+  .popap-inbox{
+    left: 150px;
+    top: -400px;
+    bottom: auto;
+    max-width: 350px;
+    z-index: 110;
+   
+   
+  }
+  .inbox-open{
+    top: 20px;
+  }
+  .inbox-next{
+    left: 650px;
+    top: 20px;
+    bottom: auto;
+    max-width: 350px;
+    
+  }
+  .inbox-next_open{
+    left: 250px;
+   
+  }
+
+  .popap-today {
+    max-width: 100px;
+    min-height: 100px;
+    
+    bottom: 250px;
+    
+    
+  }
+  .popap-today_open{
+    left: 300px;
+  }
+  .today-title {
+    width: 80px;
+  }
+}
+
+@media (max-width: 450px) {
+  
+  .player{
+    height: 120px;
+    overflow: hidden;
+    max-width: 180px;
+  }
+
+  .player-open{
+    height: 220px;
+  }
+
+  .player-bar{
+    
+   flex-wrap: wrap;
+   margin-bottom: 5px;
+  }
+  .player-list{
+    display: block;
+    width: 70px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  .player-list:hover{
+    color: #f8d00a;
+  }
+  .play-item {
+    font-size: 12px;
+    padding: 5px;
+    padding-left: 5px;
+  }
+  
+  .play-list {
+    text-align: left;
+    visibility: hidden;
+    opacity: 0;
+  }
+  .item-icon{
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    background-size: 10px, 10px;
+  }
+
+  .play-list_open{
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .time {
+    min-height: 60px;
+    font-size: 62px;    
+  }
+
+  .greeting-container {
+    min-height: 30px;
+    font-size: 28px;
+  }
+
+  .greeting {
+    padding: 5px;
+  }
+
+  .name {
+    font-size: 28px;
+    padding: 5px;
+  }
 }

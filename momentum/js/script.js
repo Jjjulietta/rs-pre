@@ -198,6 +198,8 @@ const playNextBtn = document.querySelector('.play-next');
 const play = document.querySelector('.play');
 const playListContainer = document.querySelector('.play-list');
 const song = document.querySelector('.song');
+const playerList = document.querySelector('.player-list');
+console.log(playerList)
 
 playList.forEach(el =>{
     const li = document.createElement('li')
@@ -235,7 +237,7 @@ async  function playAudio() {
     else if(isPlay) {
         audio.pause();
         play.classList.remove('pause');
-        
+        song.textContent = '';
         lis[playNum].classList.remove('item-active');
        return isPlay = false;
     }
@@ -265,6 +267,11 @@ playPrevBtn.addEventListener('click', playPrev);
 audio.addEventListener('ended', ()=>{isPlay = false; lis[playNum].classList.toggle('item-active'); 
  playNext()})
 
+playerList.addEventListener('click', ()=>{
+    audioPlayer.classList.toggle('player-open');
+    playListContainer.classList.toggle('play-list_open')
+})
+
 
 /*--------------------AUDIO PLAYER--------------------*/
 
@@ -275,6 +282,7 @@ const volumeBtn = document.querySelector('.volume-btn');
 const volumeSlider = document.querySelector('.volume-slider');
 const volumePercent = document.querySelector('.volume-percentage');
 const timeLength = document.querySelector('.time-length');
+
 audio.addEventListener('loadeddata', ()=>{
 timeLength.textContent = getTimeSec(audio.duration);
 audio.volume = 0.5;
@@ -434,7 +442,7 @@ async function getLincToImageUnsplash(q) {
     
 }
 
-async function getLincToImageFlic(t) {
+async function getLincToImageFlic(q) {
     const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=701f876e63bd4a918eaf824e809b23e8&tags=${flicTag.value}&extras=url_l&format=json&nojsoncallback=1`;
     const res =  await fetch(url);
     const data = await res.json();
@@ -748,7 +756,22 @@ let date = new Date();
 todoBtn.addEventListener('click', ()=>{
     popapToDo.classList.toggle('todo-active');
     todoBtn.classList.toggle('todo-btn_active')
-    
+    if(inboxNext.classList.contains('inbox-next_open')){
+        inboxNext.classList.remove('inbox-next_open')
+         
+      }
+    if(popapInbox.classList.contains('inbox-open')) {
+        popapInbox.classList.remove('inbox-open');
+        inboxTask.classList.remove('inbox-active');
+      }
+    if( todayTaskBlock.classList.contains('popap-today_open')) {
+        todayTaskBlock.classList.remove('popap-today_open');
+        todayBtn.classList.remove('today-active');
+    }
+    if(popapDone.classList.contains('popap-done_open')){
+        popapDone.classList.remove('popap-done_open');
+        doneTaskBtn.classList.remove('done-active')
+    }
 });
 
 taskTitle.addEventListener('click', ()=>{
@@ -804,11 +827,10 @@ const arrowBottom = document.querySelector('.arrpw-bottom');
 inboxTask.addEventListener('click', ()=>{
     inboxTask.classList.toggle('inbox-active');
     popapInbox.classList.toggle('inbox-open');
-   /* if(popapInbox.classList.contains('inbox-open')){
-
-        getLocalStorageObj();
-        createTask();
-    }*/
+   if(inboxNext.classList.contains('inbox-next_open')){
+      inboxNext.classList.remove('inbox-next_open')
+       
+    }
            
 })
 
@@ -864,6 +886,13 @@ saveTask.addEventListener('click', ()=>{
    
 })
 
+// check 1 month date
+function checkFirstDate() {
+    if(dayToday == 1) {
+        obj = objNext;
+        objNext = {month: '', day: {}}
+    }
+}
 
 function createNextMonth(){
     let div = document.createElement('DIV');
@@ -907,10 +936,14 @@ console.log(monthPrev)
 
 createCalendar(calendarNext, 2023, monthNextNum + 1)
 
+//open Inbox-Next
+
 monthNext.addEventListener('click', ()=>{
     inboxNext.classList.add('inbox-next_open')
     
  })
+
+//close Inbox-next
 
 monthPrev.addEventListener('click', ()=>{
     inboxNext.classList.remove('inbox-next_open')
@@ -943,7 +976,7 @@ window.addEventListener('beforeunload', ()=>{ setLocalStorageObj();
 setLocalStorageObjNext()} );
 //window.addEventListener('load', getLocalStorageObj)
 window.addEventListener('load',  ()=>{ getLocalStorageObj(); 
-    getLocalStorageObjNext();
+    getLocalStorageObjNext(); checkFirstDate();
     createTask(); showTaskDay(); showTaskDayNextMonth();
     createTaskNext()}) 
 
