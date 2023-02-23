@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="assets/favicon.ico" rel="shortcut icon" />
+  <link rel="stylesheet" href="css/owfont-regular.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>momentum</title>
+</head>
+<body>
+  <header class="header">
+    <div class="player">
+      <div class="player-controls">
+        <button class="play-prev player-icon"></button>
+        <div class="song"></div>
+        <button class="play-next player-icon"></button>
+      </div>
+      <div class="player-bar">
+        <button class="play player-icon"></button>
+        <div class="timeline">
+          <div class="progress"></div>
+        </div>
+        <div class="time-video">
+          <span class="time-cur"></span>
+          <span class="divider">/</span>
+          <span class="time-length"></span>
+        </div>
+        <div class="volume">
+          <div class="volume-btn"></div>
+          <div class="volume-slider">
+            <div class="volume-percentage"></div>
+          </div>
+        </div>
+      </div>
+      <div class="player-list">play list</div>
+      <ul class="play-list"></ul>
+    </div>
+    <div class="weather">
+      <input type="text" class="city" value="Minsk"  />
+      <i class="weather-icon owf"></i>
+      <div class="weather-error"></div>
+      <div class="description-container">
+        <span class="temperature"></span>
+        <span class="weather-description"></span>
+      </div>
+      <div class="wind"></div>
+      <div class="humidity"></div>
+    </div>
+  </header>
+  <main class="main">
+    <div class="slider-icons">
+      <button class="slide-prev slider-icon"></button>
+      <button class="slide-next slider-icon"></button>
+    </div>
+    <div class="time-div"><time class="time"></time></div>
+    <date class="date"></date>
+    <div class="greeting-container">
+      <span class="greeting"></span>
+      <input type="text" class="name" id="name"  value="" placeholder="[Enter name]"/>
+    </div>
+  </main>
+  <footer class="footer">
+    <button class="change-quote"></button>
+    <div>
+      <div class="quote"></div>
+      <div class="author"></div>
+    </div>
+    <div class="settings">
+      <img src="./assets/svg/settings_FILL0_wght400_GRAD0_opsz24.svg" alt="settings-icon" class="settings-btn">
+      <div class="github">
+        <a href="https://rs.school/js-stage0/" class="rs-link" target="_blank"><img src="./assets/svg/rs_school_js.svg" class="rs-icon"  alt="rsschool-icon"></a>
+        <span class="github-name">GitHub</span>
+        <a href="https://github.com/Jjjulietta" target="_blank"><img src="./assets/svg/github (1).png" alt="github-icon" class="git-icon"></a>
+        <span class="year">2023</span>
+        <span class="lang">Eng</span>
+      </div>
+    </div>
+  </footer>
+  <div class="popap">
+    <div class="popap-body">
+      <div class="popap-languages">
+        <h2 class="languages-title">LANGUAGES</h2>
+        <div class="lang-btn">
+          <div class="english-btn">Eng</div>
+          <div class="russian-btn">Rus</div>
+        </div>
+      </div>
+      <div class="popap-img">
+        <h2 class="images-title">IMAGE sourses</h2>
+        <ul class="img-btn">
+          <li class="git-img">GitHub</li>
+          <li class="api1-img">
+            <h3 class="api1-name">Unsplash</h3>
+            <div class="change-api1">
+              <input type="text" class="api1-tag" value="">
+            </div>
+          </li>
+          <li class="api2-img">
+            <h3 class="api2-name">Flickr</h3>
+            <div class="change-api2">
+              <input type="text" class="api2-tag" value="">
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="popap-constructor">
+        <h2 class="constr-title">CONSTRUCTOR</h2>
+        <ul class="constr-btn">
+          <li class="time-btn">time</li>
+          <li class="day-btn">date</li>
+          <li class="greet-btn">greeting</li>
+          <li class="quote-btn">quote</li>
+          <li class="weather-btn">weather</li>
+          <li class="audio-btn">audio</li>
+        </ul>
+      </div>
+      <div class="todo-btn">toDoList</div>
+      <div class="popap-close">close</div>
+    </div>
+    <div class="popap-todo">
+      <div class="task-add">
+        <h2 class="task-title">Add task</h2>
+        <div class="task-block" >
+          <label for="task" class="task-name">task</label>
+          <input  type="text" class="task-text" name="inbox" autofocus>
+          <br>
+          <label for="date" class="date-name">date</label>
+          <input type="date" name="date" id="date" class="task-date"><input type="time" class="task-time">     
+          <button type="button" class="button-save">save</button>
+          <button type="button" class="button-cancel">cancel</button>
+        </div>
+      </div>
+      <div class="task-save">
+        <div class="inbox-task">inbox</div>
+        <div class="today-task">today</div>
+        <div class="done-task">done</div>
+      </div>
+    </div>
+    <div class="popap-inbox">
+      <div class="inbox-calendar">
+        <h2 class="month-name"></h2>
+        <div class="calendar"></div>
+        <div class="next-month">
+          <div class="month-next">next month</div><div class="arrow"><span class="arrow-top"></span><span class="arrow-bottom"></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="popap-today">
+      <h2 class="today-title">List task TODAY</h2>
+    </div>
+    <div class="popap-done">
+      <h2 class="done-title">DONE</h2>
+    </div>
+  </div>  
+  <script type="module"  src="js/script.js"></script>
+</body>
+</html>
